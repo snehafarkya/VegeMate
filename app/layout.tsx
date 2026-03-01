@@ -9,7 +9,6 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'VegeMate - Vegetarian Recipe Finder',
   description: 'Discover delicious vegetarian recipes based on your ingredients. Celebrate plant-based cooking with dietary filters and personalized recipe suggestions.',
-  generator: 'v0.app',
   keywords: 'vegetarian recipes, plant-based cooking, vegan recipes, gluten-free vegetarian, dairy-free recipes',
   authors: [{ name: 'VegeMate' }],
   openGraph: {

@@ -179,108 +179,119 @@ export default function Home() {
             </p>
 
             {/* CTA Button */}
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("builder-section")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-                className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-1 cursor-pointer transition-all"
-              >
-                Start Cooking
-              </button>
+            <button
+              onClick={() =>
+                document
+                  .getElementById("builder-section")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-2xl hover:-translate-y-1 cursor-pointer transition-all"
+            >
+              Start Cooking
+            </button>
           </div>
         </section>
-        <WhyVegeMate/>
-        {/* Main Builder Section */}
-        <section id="builder-section" className="max-w-6xl mx-auto px-6 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            {/* Recipe Builder Panel */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-8 bg-card border border-border rounded-3xl p-8 shadow-lg space-y-8 backdrop-blur-sm">
-                <div>
-                  <h2 className="text-lg font-semibold mb-4">
-                    🥕 Build Your Recipe
-                  </h2>
+        <WhyVegeMate />
+        <div className="pattern-bg">
+          <div className="text-center ">
+            <h2 className="text-5xl font-bold leading-tight">
+              Let's cook something
+              <span className="text-primary"> Delicious!</span>
+            </h2>
+          </div>
+          {/* Main Builder Section */}
+          <section
+            id="builder-section"
+            className="max-w-6xl mx-auto px-6 py-16"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+              {/* Recipe Builder Panel */}
+              <div className="lg:col-span-1">
+                <div className="sticky top-8 bg-card border border-border rounded-3xl p-8 shadow-lg space-y-8 backdrop-blur-sm">
+                  <div>
+                    <h2 className="text-lg font-semibold mb-4">
+                      🥕 Build Your Recipe
+                    </h2>
 
-                  <IngredientSelector
-                    selectedIngredients={selectedIngredients}
-                    onIngredientToggle={handleIngredientToggle}
-                  />
-                </div>
+                    <IngredientSelector
+                      selectedIngredients={selectedIngredients}
+                      onIngredientToggle={handleIngredientToggle}
+                    />
+                  </div>
 
-                <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">
-                    Dietary Preferences
-                  </h3>
+                  <div>
+                    <h3 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">
+                      Dietary Preferences
+                    </h3>
 
-                  <DietaryFilters
-                    selectedFilters={selectedFilters}
-                    onFilterToggle={handleFilterToggle}
-                  />
-                </div>
+                    <DietaryFilters
+                      selectedFilters={selectedFilters}
+                      onFilterToggle={handleFilterToggle}
+                    />
+                  </div>
 
-                <button
-                  onClick={generateRecipe}
-                  disabled={loading || selectedIngredients.length === 0}
-                  className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-semibold hover:shadow-xl hover:-translate-y-0.5 cursor-pointer transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  {loading ? (
-                    <>
-                      <Loader2 size={18} className="animate-spin" />
-                      Creating Magic...
-                    </>
-                  ) : (
-                    <>
-                      <RefreshCw size={18} />
-                      Generate Recipe
-                    </>
+                  <button
+                    onClick={generateRecipe}
+                    disabled={loading || selectedIngredients.length === 0}
+                    className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-semibold hover:shadow-xl hover:-translate-y-0.5 cursor-pointer transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 size={18} className="animate-spin" />
+                        Creating Magic...
+                      </>
+                    ) : (
+                      <>
+                        <RefreshCw size={18} />
+                        Generate Recipe
+                      </>
+                    )}
+                  </button>
+
+                  {error && (
+                    <div className="bg-destructive/10 border border-destructive/20 rounded-xl p-4">
+                      <p className="text-sm text-destructive font-medium">
+                        {error}
+                      </p>
+                    </div>
                   )}
-                </button>
+                </div>
+              </div>
 
-                {error && (
-                  <div className="bg-destructive/10 border border-destructive/20 rounded-xl p-4">
-                    <p className="text-sm text-destructive font-medium">
-                      {error}
+              {/* Recipe Display Area */}
+              <div className="lg:col-span-2">
+                {loading ? (
+                  <RecipeSkeleton />
+                ) : recipe ? (
+                  <div className="animate-fade-in">
+                    <RecipeDisplay
+                      recipe={recipe}
+                      onSaveFavorite={handleSaveFavorite}
+                      isFavorite={isFav}
+                    />
+                  </div>
+                ) : (
+                  <div className="bg-card border border-border rounded-3xl p-16 text-center shadow-md">
+                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
+                      <Bookmark size={28} className="text-primary" />
+                    </div>
+
+                    <h3 className="text-2xl font-semibold text-foreground mb-3">
+                      Your Recipe Awaits ✨
+                    </h3>
+
+                    <p className="text-muted-foreground max-w-md mx-auto">
+                      Add ingredients from your kitchen and generate a
+                      beautiful, plant-based recipe crafted just for you.
                     </p>
                   </div>
                 )}
               </div>
             </div>
-
-            {/* Recipe Display Area */}
-            <div className="lg:col-span-2">
-              {loading ? (
-                <RecipeSkeleton />
-              ) : recipe ? (
-                <div className="animate-fade-in">
-                  <RecipeDisplay
-                    recipe={recipe}
-                    onSaveFavorite={handleSaveFavorite}
-                    isFavorite={isFav}
-                  />
-                </div>
-              ) : (
-                <div className="bg-card border border-border rounded-3xl p-16 text-center shadow-md">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
-                    <Bookmark size={28} className="text-primary" />
-                  </div>
-
-                  <h3 className="text-2xl font-semibold text-foreground mb-3">
-                    Your Recipe Awaits ✨
-                  </h3>
-
-                  <p className="text-muted-foreground max-w-md mx-auto">
-                    Add ingredients from your kitchen and generate a beautiful,
-                    plant-based recipe crafted just for you.
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

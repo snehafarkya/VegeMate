@@ -1,16 +1,14 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { Leaf, Github, Mail, Linkedin, Twitter } from 'lucide-react'
+import Link from "next/link";
+import { Leaf, Github, Mail, Linkedin, Twitter } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-gradient-to-br from-primary/5 via-background to-secondary/5 mt-20">
+    <footer className="border-t border-border bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <div className="max-w-6xl mx-auto px-6 py-16">
-
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
@@ -116,9 +114,7 @@ export function Footer() {
 
         {/* Bottom Section */}
         <div className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-          <p>
-            © {new Date().getFullYear()} VegeMate. All rights reserved.
-          </p>
+          <p>© {new Date().getFullYear()} VegeMate. All rights reserved.</p>
 
           <div className="flex gap-6">
             <a href="#" className="hover:text-primary transition">
@@ -131,5 +127,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

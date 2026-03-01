@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Bookmark, Leaf } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-
+import Image from 'next/image'
 export function Header() {
   const pathname = usePathname()
 
@@ -14,9 +14,7 @@ export function Header() {
           href="/" 
           className="flex items-center gap-2 font-bold text-lg text-foreground hover:text-primary transition-colors group"
         >
-          <div className="w-8 h-8 rounded-lg bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
-            <Leaf size={18} className="text-primary" />
-          </div>
+          <Image src="/icon.png" alt="VegeMate Logo" width={60} height={24} className="text-primary" />
           <span className="hidden sm:inline">VegeMate</span>
         </Link>
         
