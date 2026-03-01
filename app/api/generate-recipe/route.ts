@@ -73,10 +73,9 @@ Do not include text before or after JSON.
       }
     )
 
-    // 🔴 Handle API error (read body only once)
     if (!response.ok) {
       const errorText = await response.text()
-      console.error("Cloudflare API error:", errorText)
+      // console.error("Cloudflare API error:", errorText)
 
       return NextResponse.json(
         { error: "Failed to generate recipe", details: errorText },
@@ -111,7 +110,7 @@ Do not include text before or after JSON.
       console.error("JSON Parse Error:", textContent)
 
       return NextResponse.json(
-        { error: "AI returned malformed JSON. Please try again." },
+        { error: "Oopss! It's not you, it's us. Please try again." },
         { status: 500 }
       )
     }
@@ -121,7 +120,7 @@ Do not include text before or after JSON.
       recipe,
     })
   } catch (error) {
-    console.error("Recipe generation error:", error)
+    console.error("Can't show you the error details, but we had a problem generating your recipe:")
 
     return NextResponse.json(
       { error: "Failed to generate recipe. Please try again." },
