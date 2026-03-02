@@ -156,8 +156,8 @@ export default function Home() {
             </span>
 
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-6xl font-bold text-foreground leading-tight">
-              The world has
+            <h1 className="text-4xl sm:text-[56px] font-bold text-foreground leading-tight">
+              The world has over
               <span className="text-primary"> 1 Billion Vegetarians.</span>
               <br />
               It’s time we cooked like it.
